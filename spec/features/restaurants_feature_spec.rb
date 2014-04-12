@@ -46,6 +46,18 @@ describe "the restaurants index page" do
 
     end
 
+    context "deleting a restaurant" do
+
+      it "should permanently destroy the restaurant record" do
+        visit '/restaurants'
+        click_link "Delete Ozone Coffee"
+
+        expect(page).not_to have_content("Ozone Coffee")
+        expect(page).to have_content("Restaurant deleted successfully!")
+      end
+
+    end
+
   end
 
 end
