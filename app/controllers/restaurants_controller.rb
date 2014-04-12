@@ -21,6 +21,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find params[:id]
 
     @restaurant.update restaurant_params
+    flash[:notice] = "Restaurant updated successfully!"
     redirect_to '/restaurants'
   end
 
