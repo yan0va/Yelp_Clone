@@ -20,7 +20,28 @@ describe "the restaurants index page" do
         click_button "Create Restaurant"
 
         expect(current_path).to eq '/restaurants'
-        expect(page).to have_content "Ozone Coffee"
+        expect(page).to have_content("Ozone Coffee")
+      end
+
+    end
+
+  end
+
+  context "with existing restaurants" do
+
+    before do
+      Restaurant.create({:name => "Ozone Coffee"})
+    end
+
+    context "editing a restaurant" do
+
+      it "should update the restaurant details" do
+        visit '/restaurants'
+        click_link "Edit"
+        fill_in "Name", with: "Coffee House"
+        click_button "Update Restaurant"
+
+        expect(page).to have_content("Coffee House")
       end
 
     end
@@ -28,3 +49,7 @@ describe "the restaurants index page" do
   end
 
 end
+
+
+
+
